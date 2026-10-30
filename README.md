@@ -1,25 +1,33 @@
-# Jogo de Naves
+# Jogo de Naves — Unity 6000.5.5f1
 
-Projeto shooter 2D para Unity 6000.5.5f1.
-
-## Organização
+Tudo fica em **Assets/JogoDeNaves**:
 
 ```text
 Assets/
 └── JogoDeNaves/
-    ├── Cenas/        (gerada automaticamente)
-    ├── Scripts/
-    │   └── Editor/   (scripts especiais do Editor Unity)
-    └── Recursos/     (Animator e prefab gerados)
+    ├── _Boot.unity                  (cena gerada no Editor)
+    ├── SpaceBossGame.cs             (jogador, tiros e vida)
+    ├── BossBehavior.cs              (9 comportamentos)
+    ├── SpaceBossRestartButton.cs    (reiniciar)
+    ├── Boss.controller              (gerado no Editor)
+    ├── Projectile.prefab            (gerado no Editor)
+    └── Editor/
+        ├── CriadorDeCenas.cs
+        └── RecuperarCenas.cs
 ```
 
-## Como jogar
+A pasta Editor é necessária para a Unity separar scripts de edição dos scripts de jogo.
 
-1. Abra o projeto com Unity 6000.5.5f1.
-2. Aguarde a compilação dos scripts e a instalação do Unity UI (UGUI).
-3. No menu superior, escolha **Ferramentas > Jogo de Naves > Abrir ou recriar _Boot**.
-4. Abra `Assets/JogoDeNaves/Cenas/_Boot.unity` e clique em Play.
+## Como abrir
 
-**WASD ou setas:** mover a nave. **Espaço:** atirar.
+1. Abra o projeto na Unity 6000.5.5f1 e espere a compilação.
+2. Use **Ferramentas > Jogo de Naves > Criar cena _Boot** para aplicar as alterações de tela e vida, mesmo que exista uma cena antiga.
+3. Abra `Assets/JogoDeNaves/_Boot.unity` e clique em Play.
 
-A cena e os recursos são criados no Editor pelo gerador. O projeto ainda não foi testado diretamente em uma instalação Unity neste ambiente.
+Controles: **WASD/setas** para mover e **Espaço** para atirar.
+
+Chefão: **180 HP** e três fases, nove comportamentos no Animator. Jogador perde no quarto dano. Os tiros usam `UnityEngine.Pool.ObjectPool`.
+
+A tela usa Canvas associado à câmera fixa e Canvas Scaler em modo **Expand**, para preservar o enquadramento completo em diferentes proporções de janela.
+
+A cena é gerada pelo Editor; não foi possível executar a Unity neste ambiente para validar visualmente.

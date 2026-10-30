@@ -5,7 +5,7 @@ using UnityEngine;
 [InitializeOnLoad]
 public static class SpaceBossAutoSetup
 {
-    private const string ScenePath = "Assets/JogoDeNaves/Cenas/_Boot.unity";
+    private const string ScenePath = "Assets/JogoDeNaves/_Boot.unity";
 
     static SpaceBossAutoSetup()
     {

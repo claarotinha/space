@@ -17,7 +17,7 @@ public class SpaceBossGame : MonoBehaviour
     public RectTransform projectilePrefab;
     public float playerSpeed = 380f;
     public float shotInterval = .35f;
-    public int bossMaxHealth = 180;
+    public int bossMaxHealth = 60;
     public int bossHP, hits;
     public bool ended, transitioning;
     public float invincibleUntil, playerInvincibleUntil;

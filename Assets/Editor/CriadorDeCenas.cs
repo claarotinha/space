@@ -11,14 +11,14 @@ using System.IO;
 
 public static class SpaceBossBuilder
 {
-    const string Root="Assets/SpaceBoss";
+    const string Root="Assets/Recursos";
     [MenuItem("Ferramentas/Jogo de Naves/Criar cena _Boot")]
     public static void Build()
     {
-        Directory.CreateDirectory(Root+"/03_RecursosGerados");
+        Directory.CreateDirectory(Root);
         Directory.CreateDirectory("Assets/Scenes");
-        if (AssetDatabase.LoadAssetAtPath<AnimatorController>(Root+"/03_RecursosGerados/Boss.controller") != null)
-            AssetDatabase.DeleteAsset(Root+"/03_RecursosGerados/Boss.controller");
+        if (AssetDatabase.LoadAssetAtPath<AnimatorController>(Root+"/Boss.controller") != null)
+            AssetDatabase.DeleteAsset(Root+"/Boss.controller");
         var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
         var camera=new GameObject("Camera Principal").AddComponent<Camera>();
         camera.orthographicSize=5f;
@@ -44,7 +44,7 @@ public static class SpaceBossBuilder
         var button=buttonRect.gameObject.AddComponent<Button>();
         buttonRect.gameObject.AddComponent<SpaceBossRestartButton>();
         var shot=Panel("Modelo de Projetil",field,new Vector2(10,22),new Vector2(0,-900),Color.cyan);
-        string prefabPath=Root+"/03_RecursosGerados/Projectile.prefab";
+        string prefabPath=Root+"/Projectile.prefab";
         var prefab=PrefabUtility.SaveAsPrefabAsset(shot.gameObject,prefabPath);
         Object.DestroyImmediate(shot.gameObject);
         var go=new GameObject("Gerenciador do Jogo");
@@ -60,7 +60,7 @@ public static class SpaceBossBuilder
 #else
         events.AddComponent<StandaloneInputModule>();
 #endif
-        var controller=AnimatorController.CreateAnimatorControllerAtPath(Root+"/03_RecursosGerados/Boss.controller");
+        var controller=AnimatorController.CreateAnimatorControllerAtPath(Root+"/Boss.controller");
         controller.AddParameter("Behavior",AnimatorControllerParameterType.Int);
         var sm=controller.layers[0].stateMachine;
         var states=new AnimatorState[10];

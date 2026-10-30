@@ -1,49 +1,26 @@
-# Jogo de Naves — Space Boss
+# Jogo de Naves — Unity 6000.5.5f1
 
-Projeto de shooter 2D para Unity **6000.5.5f1**.
+Projeto 2D com Canvas e um chefão de nove comportamentos.
 
-## Organização das pastas
+## Pastas
 
 ```text
 Assets/
-├── Scenes/
-│   └── _Boot.unity          (gerada ao abrir o Editor)
-└── SpaceBoss/
-    ├── 01_Codigos/
-    │   ├── Jogo/SpaceBossGame.cs
-    │   ├── Chefao/BossBehavior.cs
-    │   └── Interface/SpaceBossRestartButton.cs
-    ├── 02_Editor/
-    │   └── Editor/
-    │       ├── CriadorDeCenas.cs
-    │       └── RecuperarCenas.cs
-    └── 03_RecursosGerados/  (criada automaticamente)
-        ├── Boss.controller
-        └── Projectile.prefab
+├── Scenes/        _Boot.unity (criada no Editor)
+├── Scripts/       Scripts de jogo, chefão e interface
+├── Editor/        Ferramentas para gerar ou recuperar a cena
+└── Recursos/      Prefab de projétil e Animator (gerados)
 ```
 
-Os scripts principais mantêm seus nomes técnicos originais para não quebrar referências da Unity. Os nomes visíveis na cena e os menus do gerador foram traduzidos para português.
+## Executar
 
-## Como abrir
+1. Abra o projeto na Unity 6000.5.5f1.
+2. Aguarde compilar os scripts e instalar o pacote Unity UI.
+3. Use **Ferramentas > Jogo de Naves > Abrir ou recriar _Boot**.
+4. Abra `Assets/Scenes/_Boot.unity` e pressione Play.
 
-1. Abra a pasta do repositório no Unity Hub usando a versão 6000.5.5f1.
-2. Espere a importação dos pacotes e a compilação.
-3. Se a cena não abrir automaticamente, use **Ferramentas > Jogo de Naves > Abrir ou recriar _Boot**.
-4. Abra `Assets/Scenes/_Boot.unity` e clique em Play.
+WASD ou setas movem a nave; Espaço atira.
 
-## Controles
+O projeto usa `UnityEngine.Pool.ObjectPool`, Animator Controller com `StateMachineBehaviour`, 240 HP no chefão e quatro pontos de vida para o jogador (derrota no quarto dano).
 
-- **WASD / Setas:** movimentar a nave.
-- **Espaço:** disparar continuamente.
-- **Tentar Novamente:** reiniciar após vitória ou derrota.
-
-## Requisitos
-
-- Câmera fixa, Canvas e UGUI.
-- Jogador resiste a 3 danos e perde no quarto.
-- Chefão com 240 HP e barra de vida.
-- Nove estados no Animator, com StateMachineBehaviour.
-- Mudanças de fase com 2,25 s de invulnerabilidade.
-- ObjectPool da Unity para tiros do jogador e do chefão.
-
-**Atenção:** a cena e os recursos são gerados no Editor, não estão versionados como arquivos `.unity` prontos. Ainda não houve teste executado no Editor Unity neste ambiente.
+**Observação:** a cena é gerada localmente pelo Editor; o funcionamento ainda não foi validado dentro da Unity neste ambiente.

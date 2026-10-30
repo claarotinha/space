@@ -26,8 +26,8 @@ A pasta Editor é necessária para a Unity separar scripts de edição dos scrip
 
 Controles: **WASD/setas** para mover e **Espaço** para atirar.
 
-Chefão: **180 HP** e três fases, nove comportamentos no Animator. Jogador perde no quarto dano. Os tiros usam `UnityEngine.Pool.ObjectPool`.
+Chefão: **60 HP** e três fases, nove comportamentos no Animator. Jogador perde no quarto dano. Os tiros usam `UnityEngine.Pool.ObjectPool`.
 
-A tela usa Canvas associado à câmera fixa e Canvas Scaler em modo **Expand**, para preservar o enquadramento completo em diferentes proporções de janela.
+A tela usa Canvas ajustado à tela e Canvas Scaler em modo **Expand**, para preservar o enquadramento completo em diferentes proporções de janela.
 
 A cena é gerada pelo Editor; não foi possível executar a Unity neste ambiente para validar visualmente.

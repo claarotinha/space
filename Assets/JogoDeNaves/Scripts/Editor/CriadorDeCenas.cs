@@ -11,12 +11,12 @@ using System.IO;
 
 public static class SpaceBossBuilder
 {
-    const string Root="Assets/Recursos";
+    const string Root="Assets/JogoDeNaves/Recursos";
     [MenuItem("Ferramentas/Jogo de Naves/Criar cena _Boot")]
     public static void Build()
     {
         Directory.CreateDirectory(Root);
-        Directory.CreateDirectory("Assets/Scenes");
+        Directory.CreateDirectory("Assets/JogoDeNaves/Cenas");
         if (AssetDatabase.LoadAssetAtPath<AnimatorController>(Root+"/Boss.controller") != null)
             AssetDatabase.DeleteAsset(Root+"/Boss.controller");
         var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
@@ -78,10 +78,10 @@ public static class SpaceBossBuilder
         }
         game.bossAnimator=go.AddComponent<Animator>();
         game.bossAnimator.runtimeAnimatorController=controller;
-        EditorSceneManager.SaveScene(scene,"Assets/Scenes/_Boot.unity");
-        EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene("Assets/Scenes/_Boot.unity", true) };
+        EditorSceneManager.SaveScene(scene,"Assets/JogoDeNaves/Cenas/_Boot.unity");
+        EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene("Assets/JogoDeNaves/Cenas/_Boot.unity", true) };
         AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
-        EditorUtility.DisplayDialog("Space Boss","Cena _Boot criada! Abra Assets/SpaceBoss/_Boot.unity e aperte Play.","OK");
+        EditorUtility.DisplayDialog("Space Boss","Cena _Boot criada! Abra Assets/JogoDeNaves/Cenas/_Boot.unity e aperte Play.","OK");
     }
     static RectTransform Panel(string name,Transform parent,Vector2 size,Vector2 pos,Color color)
     {

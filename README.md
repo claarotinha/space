@@ -1,26 +1,25 @@
-# Jogo de Naves — Unity 6000.5.5f1
+# Jogo de Naves
 
-Projeto 2D com Canvas e um chefão de nove comportamentos.
+Projeto shooter 2D para Unity 6000.5.5f1.
 
-## Pastas
+## Organização
 
 ```text
 Assets/
-├── Scenes/        _Boot.unity (criada no Editor)
-├── Scripts/       Scripts de jogo, chefão e interface
-├── Editor/        Ferramentas para gerar ou recuperar a cena
-└── Recursos/      Prefab de projétil e Animator (gerados)
+└── JogoDeNaves/
+    ├── Cenas/        (gerada automaticamente)
+    ├── Scripts/
+    │   └── Editor/   (scripts especiais do Editor Unity)
+    └── Recursos/     (Animator e prefab gerados)
 ```
 
-## Executar
+## Como jogar
 
-1. Abra o projeto na Unity 6000.5.5f1.
-2. Aguarde compilar os scripts e instalar o pacote Unity UI.
-3. Use **Ferramentas > Jogo de Naves > Abrir ou recriar _Boot**.
-4. Abra `Assets/Scenes/_Boot.unity` e pressione Play.
+1. Abra o projeto com Unity 6000.5.5f1.
+2. Aguarde a compilação dos scripts e a instalação do Unity UI (UGUI).
+3. No menu superior, escolha **Ferramentas > Jogo de Naves > Abrir ou recriar _Boot**.
+4. Abra `Assets/JogoDeNaves/Cenas/_Boot.unity` e clique em Play.
 
-WASD ou setas movem a nave; Espaço atira.
+**WASD ou setas:** mover a nave. **Espaço:** atirar.
 
-O projeto usa `UnityEngine.Pool.ObjectPool`, Animator Controller com `StateMachineBehaviour`, 240 HP no chefão e quatro pontos de vida para o jogador (derrota no quarto dano).
-
-**Observação:** a cena é gerada localmente pelo Editor; o funcionamento ainda não foi validado dentro da Unity neste ambiente.
+A cena e os recursos são criados no Editor pelo gerador. O projeto ainda não foi testado diretamente em uma instalação Unity neste ambiente.

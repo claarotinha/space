@@ -1,34 +1,49 @@
-# Space Boss — Unity 6000.5.5f1
+# Jogo de Naves — Space Boss
 
-Shooter 2D vertical com Canvas, ObjectPool da Unity e 9 estados de comportamento do chefão no Animator.
+Projeto de shooter 2D para Unity **6000.5.5f1**.
 
-## Abrir o jogo
-1. Instale **Unity 6000.5.5f1** pelo Unity Hub.
-2. Baixe este repositório em **Code > Download ZIP** e extraia.
-3. Abra a pasta extraída pelo Unity Hub com **Add project from disk**.
-4. Aguarde o Unity importar os pacotes e compilar.
-5. O script `SpaceBossAutoSetup` deve gerar e abrir `Assets/Scenes/_Boot.unity` automaticamente.
-6. Se não gerar, use **Tools > Space Boss > Abrir ou recriar _Boot**.
-7. Abra `Assets/Scenes/_Boot.unity` e pressione Play.
+## Organização das pastas
 
-**Importante:** a cena é gerada pelo Editor na primeira abertura. Ela não está versionada como YAML no repositório. Este código não foi testado em uma instalação real da Unity e pode exigir correções conforme o Console.
+```text
+Assets/
+├── Scenes/
+│   └── _Boot.unity          (gerada ao abrir o Editor)
+└── SpaceBoss/
+    ├── Scripts/
+    │   ├── SpaceBossGame.cs
+    │   ├── BossBehavior.cs
+    │   └── SpaceBossRestartButton.cs
+    ├── 02_Editor/
+    │   └── Editor/
+    │       ├── CriadorDeCenas.cs
+    │       └── RecuperarCenas.cs
+    └── 03_RecursosGerados/  (criada automaticamente)
+        ├── Boss.controller
+        └── Projectile.prefab
+```
+
+Os scripts principais mantêm seus nomes técnicos originais para não quebrar referências da Unity. Os nomes visíveis na cena e os menus do gerador foram traduzidos para português.
+
+## Como abrir
+
+1. Abra a pasta do repositório no Unity Hub usando a versão 6000.5.5f1.
+2. Espere a importação dos pacotes e a compilação.
+3. Se a cena não abrir automaticamente, use **Ferramentas > Jogo de Naves > Abrir ou recriar _Boot**.
+4. Abra `Assets/Scenes/_Boot.unity` e clique em Play.
 
 ## Controles
-- WASD / setas: movimentação livre
-- Espaço: tiro contínuo a cada 0,35 s
-- Tentar Novamente: reinicia após vitória ou derrota
 
-## Mecânicas
-- Um jogador e um chefão, câmera fixa
-- 4 pontos de vida do jogador (perde no quarto dano)
-- Chefão com 240 HP, barra de vida e 3 fases
-- 9 estados de comportamento no Animator, cada um com StateMachineBehaviour
-- 2,25 segundos de invulnerabilidade na mudança de fase
-- Pools separadas com UnityEngine.Pool.ObjectPool para os projéteis
-- Interface 2D usando Canvas / UGUI
+- **WASD / Setas:** movimentar a nave.
+- **Espaço:** disparar continuamente.
+- **Tentar Novamente:** reiniciar após vitória ou derrota.
 
-## Se aparecer erro
-Abra **Window > General > Console**, copie o primeiro erro vermelho e informe também a versão do Unity e os pacotes instalados.
+## Requisitos
 
-## Cenas apagadas
-Use **Tools > Space Boss > Abrir ou recriar _Boot**. O gerador cria `Assets/Scenes/_Boot.unity` e adiciona a cena às Build Settings. A cena é gerada localmente no Editor e não está armazenada como arquivo `.unity` no GitHub.
+- Câmera fixa, Canvas e UGUI.
+- Jogador resiste a 3 danos e perde no quarto.
+- Chefão com 240 HP e barra de vida.
+- Nove estados no Animator, com StateMachineBehaviour.
+- Mudanças de fase com 2,25 s de invulnerabilidade.
+- ObjectPool da Unity para tiros do jogador e do chefão.
+
+**Atenção:** a cena e os recursos são gerados no Editor, não estão versionados como arquivos `.unity` prontos. Ainda não houve teste executado no Editor Unity neste ambiente.

@@ -3,7 +3,10 @@ using UnityEditor.Animations;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
+using UnityEngine.EventSystems;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem.UI;
+#endif
 using System.IO;
 
 public static class SpaceBossBuilder
@@ -13,6 +16,8 @@ public static class SpaceBossBuilder
     public static void Build()
     {
         Directory.CreateDirectory(Root+"/Generated");
+        if (AssetDatabase.LoadAssetAtPath<AnimatorController>(Root+"/Generated/Boss.controller") != null)
+            AssetDatabase.DeleteAsset(Root+"/Generated/Boss.controller");
         var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
         var camera=new GameObject("Main Camera").AddComponent<Camera>();
         camera.tag="MainCamera"; camera.orthographic=true; camera.backgroundColor=new Color(.025f,.04f,.1f);
@@ -35,6 +40,7 @@ public static class SpaceBossBuilder
         var buttonRect=Panel("Botao Reiniciar",result,new Vector2(240,60),new Vector2(0,-55),new Color(.2f,.45f,.7f));
         TextLabel("TENTAR NOVAMENTE",buttonRect,Vector2.zero,new Vector2(230,50),22);
         var button=buttonRect.gameObject.AddComponent<Button>();
+        buttonRect.gameObject.AddComponent<SpaceBossRestartButton>();
         var shot=Panel("Projetil Prefab",field,new Vector2(10,22),new Vector2(0,-900),Color.cyan);
         string prefabPath=Root+"/Generated/Projectile.prefab";
         var prefab=PrefabUtility.SaveAsPrefabAsset(shot.gameObject,prefabPath);
@@ -46,7 +52,12 @@ public static class SpaceBossBuilder
         game.bossHealthFill=barImage; game.livesText=lives; game.statusText=status;
         game.resultPanel=result.gameObject; game.resultText=resultText;
         game.projectilePrefab=prefab.GetComponent<RectTransform>();
-        button.onClick.AddListener(game.Restart);
+        var events = new GameObject("EventSystem", typeof(EventSystem));
+#if ENABLE_INPUT_SYSTEM
+        events.AddComponent<InputSystemUIInputModule>();
+#else
+        events.AddComponent<StandaloneInputModule>();
+#endif
         var controller=AnimatorController.CreateAnimatorControllerAtPath(Root+"/Generated/Boss.controller");
         controller.AddParameter("Behavior",AnimatorControllerParameterType.Int);
         var sm=controller.layers[0].stateMachine;
@@ -66,6 +77,7 @@ public static class SpaceBossBuilder
         game.bossAnimator=go.AddComponent<Animator>();
         game.bossAnimator.runtimeAnimatorController=controller;
         EditorSceneManager.SaveScene(scene,Root+"/_Boot.unity");
+        EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(Root+"/_Boot.unity", true) };
         AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
         EditorUtility.DisplayDialog("Space Boss","Cena _Boot criada! Abra Assets/SpaceBoss/_Boot.unity e aperte Play.","OK");
     }

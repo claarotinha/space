@@ -5,20 +5,29 @@ using UnityEngine;
 [InitializeOnLoad]
 public static class SpaceBossAutoSetup
 {
+    private const string ScenePath = "Assets/Scenes/_Boot.unity";
+
     static SpaceBossAutoSetup()
     {
-        EditorApplication.delayCall += TryCreateScene;
+        EditorApplication.delayCall += EnsureScene;
     }
 
-    static void TryCreateScene()
+    [MenuItem("Tools/Space Boss/Abrir ou recriar _Boot")]
+    public static void OpenOrRecreate()
+    {
+        if (AssetDatabase.LoadAssetAtPath<SceneAsset>(ScenePath) == null)
+            SpaceBossBuilder.Build();
+        EditorSceneManager.OpenScene(ScenePath);
+    }
+
+    private static void EnsureScene()
     {
         if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling || EditorApplication.isUpdating)
             return;
-        const string scenePath = "Assets/SpaceBoss/_Boot.unity";
-        if (AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath) != null) return;
-        if (EditorSceneManager.GetActiveScene().isDirty) return;
-        SpaceBossBuilder.Build();
-        EditorSceneManager.OpenScene(scenePath);
-        Debug.Log("Space Boss: _Boot criada automaticamente. Aperte Play.");
+        if (AssetDatabase.LoadAssetAtPath<SceneAsset>(ScenePath) != null)
+            return;
+        if (EditorSceneManager.GetActiveScene().isDirty)
+            return;
+        OpenOrRecreate();
     }
 }

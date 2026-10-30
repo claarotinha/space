@@ -9,10 +9,10 @@ Assets/
 ├── Scenes/
 │   └── _Boot.unity          (gerada ao abrir o Editor)
 └── SpaceBoss/
-    ├── Scripts/
-    │   ├── SpaceBossGame.cs
-    │   ├── BossBehavior.cs
-    │   └── SpaceBossRestartButton.cs
+    ├── 01_Codigos/
+    │   ├── Jogo/SpaceBossGame.cs
+    │   ├── Chefao/BossBehavior.cs
+    │   └── Interface/SpaceBossRestartButton.cs
     ├── 02_Editor/
     │   └── Editor/
     │       ├── CriadorDeCenas.cs

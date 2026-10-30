@@ -1,31 +1,31 @@
-# Space Boss — Shooter 2D Unity 6
+# Space Boss — Unity 6000.5.5f1
 
-Trabalho acadêmico: shooter vertical com uma navinha e um único chefão.
+Shooter 2D vertical com Canvas, ObjectPool da Unity e 9 estados de comportamento do chefão no Animator.
 
-## Como executar
-1. Crie um projeto **2D** no Unity 6000.5.5f1.
-2. Copie a pasta `Assets/SpaceBoss` deste repositório para `Assets` do projeto.
-3. Aguarde a Unity compilar os scripts.
-4. Clique em **Tools > Space Boss > Criar cena _Boot**.
-5. Abra `Assets/SpaceBoss/_Boot.unity` e pressione **Play**.
+## Abrir o jogo
+1. Instale **Unity 6000.5.5f1** pelo Unity Hub.
+2. Baixe este repositório em **Code > Download ZIP** e extraia.
+3. Abra a pasta extraída pelo Unity Hub com **Add project from disk**.
+4. Aguarde o Unity importar os pacotes e compilar.
+5. O script `SpaceBossAutoSetup` deve gerar e abrir `Assets/SpaceBoss/_Boot.unity` automaticamente.
+6. Se não gerar, use **Tools > Space Boss > Criar cena _Boot**.
+7. Abra `Assets/SpaceBoss/_Boot.unity` e pressione Play.
+
+**Importante:** a cena é gerada pelo Editor na primeira abertura. Ela não está versionada como YAML no repositório. Este código não foi testado em uma instalação real da Unity e pode exigir correções conforme o Console.
 
 ## Controles
-- WASD ou setas: mover.
-- Espaço: atirar continuamente (0,35 segundo entre tiros).
-- Botão Tentar Novamente: reiniciar após vitória ou derrota.
+- WASD / setas: movimentação livre
+- Espaço: tiro contínuo a cada 0,35 s
+- Tentar Novamente: reinicia após vitória ou derrota
 
-## Implementação
-- Interface e objetos visuais com Canvas / UGUI.
-- Projéteis do jogador e chefão com `UnityEngine.Pool.ObjectPool<T>`.
-- Chefão com 240 HP e três fases: alta (>50%), média (>20% e <=50%) e baixa (<=20%).
-- Nove estados reais no Animator Controller, cada um com StateMachineBehaviour (BossBehavior).
-- Três padrões por fase: tiro direcionado, leque e onda. Velocidade e frequência aumentam em fases posteriores.
-- Alternância de comportamento a cada cinco segundos.
-- Invulnerabilidade de 2,25 segundos nas mudanças de fase, sem movimento e sem disparos.
-- Jogador começa com 4 pontos de vida, sobrevivendo a 3 danos e perdendo no quarto.
-- Câmera fixa, barra de vida, feedback visual, vitória e derrota.
+## Mecânicas
+- Um jogador e um chefão, câmera fixa
+- 4 pontos de vida do jogador (perde no quarto dano)
+- Chefão com 240 HP, barra de vida e 3 fases
+- 9 estados de comportamento no Animator, cada um com StateMachineBehaviour
+- 2,25 segundos de invulnerabilidade na mudança de fase
+- Pools separadas com UnityEngine.Pool.ObjectPool para os projéteis
+- Interface 2D usando Canvas / UGUI
 
-## Observações
-A cena e o Animator são **gerados pelo menu do Editor**, não vêm pré-gerados no repositório.
-Este código ainda precisa ser validado em uma instalação real do Unity Editor.
-Não há assets externos ou pacotes de terceiros.
+## Se aparecer erro
+Abra **Window > General > Console**, copie o primeiro erro vermelho e informe também a versão do Unity e os pacotes instalados.

@@ -7,9 +7,9 @@ Shooter 2D vertical com Canvas, ObjectPool da Unity e 9 estados de comportamento
 2. Baixe este repositório em **Code > Download ZIP** e extraia.
 3. Abra a pasta extraída pelo Unity Hub com **Add project from disk**.
 4. Aguarde o Unity importar os pacotes e compilar.
-5. O script `SpaceBossAutoSetup` deve gerar e abrir `Assets/SpaceBoss/_Boot.unity` automaticamente.
-6. Se não gerar, use **Tools > Space Boss > Criar cena _Boot**.
-7. Abra `Assets/SpaceBoss/_Boot.unity` e pressione Play.
+5. O script `SpaceBossAutoSetup` deve gerar e abrir `Assets/Scenes/_Boot.unity` automaticamente.
+6. Se não gerar, use **Tools > Space Boss > Abrir ou recriar _Boot**.
+7. Abra `Assets/Scenes/_Boot.unity` e pressione Play.
 
 **Importante:** a cena é gerada pelo Editor na primeira abertura. Ela não está versionada como YAML no repositório. Este código não foi testado em uma instalação real da Unity e pode exigir correções conforme o Console.
 
@@ -29,3 +29,6 @@ Shooter 2D vertical com Canvas, ObjectPool da Unity e 9 estados de comportamento
 
 ## Se aparecer erro
 Abra **Window > General > Console**, copie o primeiro erro vermelho e informe também a versão do Unity e os pacotes instalados.
+
+## Cenas apagadas
+Use **Tools > Space Boss > Abrir ou recriar _Boot**. O gerador cria `Assets/Scenes/_Boot.unity` e adiciona a cena às Build Settings. A cena é gerada localmente no Editor e não está armazenada como arquivo `.unity` no GitHub.

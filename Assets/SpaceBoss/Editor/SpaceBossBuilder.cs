@@ -16,10 +16,12 @@ public static class SpaceBossBuilder
     public static void Build()
     {
         Directory.CreateDirectory(Root+"/Generated");
+        Directory.CreateDirectory("Assets/Scenes");
         if (AssetDatabase.LoadAssetAtPath<AnimatorController>(Root+"/Generated/Boss.controller") != null)
             AssetDatabase.DeleteAsset(Root+"/Generated/Boss.controller");
         var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
         var camera=new GameObject("Main Camera").AddComponent<Camera>();
+        camera.orthographicSize=5f;
         camera.tag="MainCamera"; camera.orthographic=true; camera.backgroundColor=new Color(.025f,.04f,.1f);
         camera.clearFlags=CameraClearFlags.SolidColor; camera.transform.position=new Vector3(0,0,-10);
         var canvas=new GameObject("Canvas",typeof(Canvas),typeof(CanvasScaler),typeof(GraphicRaycaster));
@@ -76,8 +78,8 @@ public static class SpaceBossBuilder
         }
         game.bossAnimator=go.AddComponent<Animator>();
         game.bossAnimator.runtimeAnimatorController=controller;
-        EditorSceneManager.SaveScene(scene,Root+"/_Boot.unity");
-        EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(Root+"/_Boot.unity", true) };
+        EditorSceneManager.SaveScene(scene,"Assets/Scenes/_Boot.unity");
+        EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene("Assets/Scenes/_Boot.unity", true) };
         AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
         EditorUtility.DisplayDialog("Space Boss","Cena _Boot criada! Abra Assets/SpaceBoss/_Boot.unity e aperte Play.","OK");
     }

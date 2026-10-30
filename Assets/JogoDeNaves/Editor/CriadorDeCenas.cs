@@ -16,7 +16,6 @@ public static class SpaceBossBuilder
     public static void Build()
     {
         Directory.CreateDirectory(Root);
-        Directory.CreateDirectory(Root);
         if (AssetDatabase.LoadAssetAtPath<AnimatorController>(Root+"/Boss.controller") != null)
             AssetDatabase.DeleteAsset(Root+"/Boss.controller");
         var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
@@ -25,9 +24,9 @@ public static class SpaceBossBuilder
         camera.tag="MainCamera"; camera.orthographic=true; camera.backgroundColor=new Color(.025f,.04f,.1f);
         camera.clearFlags=CameraClearFlags.SolidColor; camera.transform.position=new Vector3(0,0,-10);
         var canvas=new GameObject("Canvas - Interface e Jogo",typeof(Canvas),typeof(CanvasScaler),typeof(GraphicRaycaster));
-        canvas.GetComponent<Canvas>().renderMode=RenderMode.ScreenSpaceCamera;
-        canvas.GetComponent<Canvas>().worldCamera=camera;
-        canvas.GetComponent<Canvas>().planeDistance=1f;
+        canvas.GetComponent<Canvas>().renderMode=RenderMode.ScreenSpaceOverlay;
+        
+        
         var scaler=canvas.GetComponent<CanvasScaler>(); scaler.uiScaleMode=CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution=new Vector2(1000,700); scaler.screenMatchMode=CanvasScaler.ScreenMatchMode.Expand;
         var field=Panel("Area de Jogo",canvas.transform,new Vector2(1000,700),Vector2.zero,new Color(.03f,.06f,.14f));
@@ -51,7 +50,7 @@ public static class SpaceBossBuilder
         Object.DestroyImmediate(shot.gameObject);
         var go=new GameObject("Gerenciador do Jogo");
         var game=go.AddComponent<SpaceBossGame>();
-        game.bossMaxHealth=180;
+        game.bossMaxHealth=60;
         game.field=field; game.player=player; game.boss=boss;
         game.playerImage=player.GetComponent<Image>(); game.bossImage=boss.GetComponent<Image>();
         game.bossHealthFill=barImage; game.livesText=lives; game.statusText=status;
@@ -84,7 +83,7 @@ public static class SpaceBossBuilder
         EditorSceneManager.SaveScene(scene,"Assets/JogoDeNaves/_Boot.unity");
         EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene("Assets/JogoDeNaves/_Boot.unity", true) };
         AssetDatabase.SaveAssets(); AssetDatabase.Refresh();
-        EditorUtility.DisplayDialog("Space Boss","Cena _Boot criada! Abra Assets/JogoDeNaves/_Boot.unity e aperte Play.","OK");
+        EditorUtility.DisplayDialog("Jogo de Naves","Cena _Boot criada! Abra Assets/JogoDeNaves/_Boot.unity e aperte Play.","OK");
     }
     static RectTransform Panel(string name,Transform parent,Vector2 size,Vector2 pos,Color color)
     {
